@@ -6,7 +6,8 @@
 #include <linux/device.h>
 #include <asm/uaccess.h>
 #include <linux/cn_proc.h>
-#include<linux/slab.h>
+#include <linux/slab.h>
+#include <linux/uaccess.h>
 
 
 #include "freg.h"

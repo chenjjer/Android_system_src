@@ -1,0 +1,43 @@
+diff --git a/Android.bp b/Android.bp
+index e3fa19c48f9..b9a7a308d17 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -688,6 +688,7 @@ java_defaults {
+         "core/java/com/android/internal/logging/EventLogTags.logtags",
+         "core/java/com/android/server/DropboxLogTags.logtags",
+         "core/java/org/chromium/arc/EventLogTags.logtags",
++        "core/java/android/os/IFregService.aidl",
+ 
+         ":apex-properties",
+         ":platform-properties",
+diff --git a/services/core/jni/Android.bp b/services/core/jni/Android.bp
+index 62184986959..f72fce7865f 100644
+--- a/services/core/jni/Android.bp
++++ b/services/core/jni/Android.bp
+@@ -52,6 +52,7 @@ cc_library_static {
+         "com_android_server_GraphicsStatsService.cpp",
+         "com_android_server_am_AppCompactor.cpp",
+         "com_android_server_am_LowMemDetector.cpp",
++        "com_android_server_FregService.cpp",
+         "onload.cpp",
+         ":lib_networkStatsFactory_native",
+     ],
+diff --git a/services/core/jni/onload.cpp b/services/core/jni/onload.cpp
+index efffa6ca735..94ffd8304c0 100644
+--- a/services/core/jni/onload.cpp
++++ b/services/core/jni/onload.cpp
+@@ -57,6 +57,7 @@ int register_android_server_net_NetworkStatsService(JNIEnv* env);
+ int register_android_server_security_VerityUtils(JNIEnv* env);
+ int register_android_server_am_AppCompactor(JNIEnv* env);
+ int register_android_server_am_LowMemDetector(JNIEnv* env);
++int register_android_server_FregService(JNIEnv* env);
+ };
+ 
+ using namespace android;
+@@ -107,5 +108,6 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* /* reserved */)
+     register_android_server_security_VerityUtils(env);
+     register_android_server_am_AppCompactor(env);
+     register_android_server_am_LowMemDetector(env);
++    register_android_server_FregService(env);
+     return JNI_VERSION_1_4;
+ }
